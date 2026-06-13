@@ -19,3 +19,15 @@ class MatchstickSolver:
         self.nodes_pruned = 0
         self.solutions = {str(i): [] for i in range(1, max_k + 1)}
         self.tokens = list(problem.replace(" ", ""))
+
+    def solve(self):
+        # Ξεκινάμε την αναζήτηση από το 1ο slot (index 0)
+        self._search(0, self.tokens, 0, 0, [])
+
+    def _search(self, idx, current_state, moves, delta, path_history):
+        self.nodes_visited += 1
+
+        # Pruning: Αν έχουμε υπερβεί το budget κινήσεων
+        if moves > self.max_k:
+            self.nodes_pruned += 1
+            return
