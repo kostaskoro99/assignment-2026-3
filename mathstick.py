@@ -31,3 +31,21 @@ class MatchstickSolver:
         if moves > self.max_k:
             self.nodes_pruned += 1
             return
+
+  # Τερματισμός (Base Case)
+         if idx == len(self.tokens):
+            if moves <= self.max_k and self._is_valid(current_state):
+                self._add_to_results(current_state, moves, path_history)
+            return
+
+        # Αναδρομή: δοκιμή υποψήφιων τιμών για το slot
+        for cand in self._get_candidates(self.tokens[idx], idx):
+            a, r = self._get_cost(self.tokens[idx], cand)
+            
+            # Δημιουργία νέου state
+            new_state = current_state[:]
+            new_state[idx] = cand
+            
+            # Υπολογισμός κινήσεων και delta για το κλάδεμα
+            new_moves = moves + a + r
+            new_delta = delta + (a - r)
