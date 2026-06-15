@@ -49,3 +49,25 @@ class MatchstickSolver:
             # Υπολογισμός κινήσεων και delta για το κλάδεμα
             new_moves = moves + a + r
             new_delta = delta + (a - r)
+
+            move_info = self._format_moves(self.tokens[idx], cand, idx)
+            self._search(idx + 1, new_state, new_moves, new_delta, path_history + move_info)
+
+    def _get_cost(self, orig, cand):
+        orig_s = LAYOUT.get(orig, set())
+        cand_s = LAYOUT.get(cand, set())
+        return len(cand_s - orig_s), len(orig_s - cand_s)
+
+    def _format_moves(self, orig, cand, slot_idx):
+        slot_name = chr(ord('A') + slot_idx)
+        orig_s = LAYOUT.get(orig, set())
+        cand_s = LAYOUT.get(cand, set())
+        
+        removed = orig_s - cand_s
+        added = cand_s - orig_s
+        
+        moves = []
+        for r in removed:
+            for a in added:
+                moves.append(f"Move({slot_name}{r}, {slot_name}{a})")
+        return moves
