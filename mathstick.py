@@ -78,3 +78,12 @@ class MatchstickSolver:
             left, right = eq.split('=')
             return eval(left) == int(right)
         except: return False
+
+    def _get_candidates(self, current, idx):
+        # Αν είναι ψηφίο, δοκιμάζουμε 0-9. Αν είναι τελεστής, '+' ή '-'
+        if current in ['+', '-']: return ['+', '-']
+        return [str(i) for i in range(10)]
+
+    def _add_to_results(self, state, moves, history):
+        picks = [m.split(',')[0].replace("Move(", "") for m in history]
+        places = [m.split(',')[1].replace(")", "").strip() for m in history]
