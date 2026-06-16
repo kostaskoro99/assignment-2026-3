@@ -72,9 +72,9 @@ class MatchstickSolver:
                 moves.append(f"Move({slot_name}{r}, {slot_name}{a})")
         return moves
 
-      def _is_valid(self, state):
+    def _is_valid(self, state):
         try:
-           eq = "".join(state)
-           left, right = eq.split('=')
-           return eval(left) == int(right)
+            eq = "".join(state)
+            left, right = eq.split('=')
+            return eval(left) == int(right)
         except: return False
