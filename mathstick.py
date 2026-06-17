@@ -101,6 +101,12 @@ class MatchstickSolver:
         if str(moves) in self.solutions:
             self.solutions[str(moves)].append(sol)
 
+#  Βοηθητική συνάρτηση για έλεγχο εισόδου
+def is_valid_input(problem):
+     # Επιτρέπονται μόνο ψηφία, +, -, =
+     allowed = set("0123456789+-=")
+     return all(char in allowed for char in problem.replace(" ", ""))
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--problem", required=True)
