@@ -107,3 +107,17 @@ def main():
 
     solver = MatchstickSolver(args.problem, args.max_k)
     solver.solve()
+
+    # Τελική εκτύπωση σε JSON
+    output = {
+        "problem": solver.problem,
+        "max_k": solver.max_k,
+        "counts": {k: len(v) for k, v in solver.solutions.items()},
+        "nodes_visited": solver.nodes_visited,
+        "nodes_pruned": solver.nodes_pruned,
+        "solutions": solver.solutions
+    }
+    print(json.dumps(output, indent=4))
+
+if __name__ == "__main__":
+    main()
