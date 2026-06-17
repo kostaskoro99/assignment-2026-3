@@ -44,8 +44,7 @@ class MatchstickSolver:
         # Αναδρομή: δοκιμή υποψήφιων τιμών για το slot
         for cand in self._get_candidates(self.tokens[idx], idx):
             a, r = self._get_cost(self.tokens[idx], cand)
-            
-            # Δημιουργία νέου state
+             # Δημιουργία νέου state
             new_state = current_state[:]
             new_state[idx] = cand
             
@@ -78,9 +77,17 @@ class MatchstickSolver:
     def _is_valid(self, state):
         try:
             eq = "".join(state)
-            left, right = eq.split('=')
-            return eval(left) == int(right)
-        except: return False
+            eq_for_eval = eq.replace('=', '==') 
+            left, right = eq_for_eval.split('==')                                               
+            result = eval(left) == int(right)
+
+            if result:
+                print(f"DEBUG: Βρέθηκε λύση! {eq}")
+            
+            return result
+        except Exception as e:
+           
+            return False            
 
     def _get_candidates(self, current, idx):
         # Αν είναι ψηφίο, δοκιμάζουμε 0-9. Αν είναι τελεστής, '+' ή '-'
