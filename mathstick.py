@@ -113,6 +113,11 @@ def main():
     parser.add_argument("--max-k", type=int, default=2)
     args = parser.parse_args()
 
+     # Έλεγχος πριν το solver
+    if not is_valid_input(args.problem):
+       print("Error: Μη έγκυρη είσοδος.")
+       return
+    
     solver = MatchstickSolver(args.problem, args.max_k)
     solver.solve()
 
