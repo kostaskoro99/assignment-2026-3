@@ -22,6 +22,7 @@ class MatchstickSolver:
 
     def solve(self):
         # Ξεκινάμε την αναζήτηση από το 1ο slot (index 0)
+        print(f"DEBUG: Ξεκινάω αναζήτηση για: {self.tokens}")        
         self._search(0, self.tokens, 0, 0, [])
 
     def _search(self, idx, current_state, moves, delta, path_history):
