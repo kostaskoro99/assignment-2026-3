@@ -33,12 +33,14 @@ class MatchstickSolver:
             self.nodes_pruned += 1
             return
 
-  # Τερματισμός (Base Case)
+      # Τερματισμός (Base Case)
         if idx == len(self.tokens):
             if moves <= self.max_k and self._is_valid(current_state):
                 self._add_to_results(current_state, moves, path_history)
             return
 
+        print(f"Εξετάζω: {''.join(current_state)} | Κινήσεις: {moves}")        
+        
         # Αναδρομή: δοκιμή υποψήφιων τιμών για το slot
         for cand in self._get_candidates(self.tokens[idx], idx):
             a, r = self._get_cost(self.tokens[idx], cand)
