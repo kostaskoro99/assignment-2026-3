@@ -96,3 +96,5 @@ class MatchstickSolver:
             "nodes_visited": self.nodes_visited,
             "nodes_pruned": self.nodes_pruned
         }
+        if str(moves) in self.solutions:
+            self.solutions[str(moves)].append(sol)
