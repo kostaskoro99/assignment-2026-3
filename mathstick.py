@@ -87,3 +87,12 @@ class MatchstickSolver:
     def _add_to_results(self, state, moves, history):
         picks = [m.split(',')[0].replace("Move(", "") for m in history]
         places = [m.split(',')[1].replace(")", "").strip() for m in history]
+
+        sol = {
+            "equation": "".join(state),
+            "picks": picks,
+            "places": places,
+            "moves": history,
+            "nodes_visited": self.nodes_visited,
+            "nodes_pruned": self.nodes_pruned
+        }
