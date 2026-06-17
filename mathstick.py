@@ -98,3 +98,9 @@ class MatchstickSolver:
         }
         if str(moves) in self.solutions:
             self.solutions[str(moves)].append(sol)
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--problem", required=True)
+    parser.add_argument("--max-k", type=int, default=2)
+    args = parser.parse_args()
