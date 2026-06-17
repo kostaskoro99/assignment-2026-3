@@ -104,3 +104,6 @@ def main():
     parser.add_argument("--problem", required=True)
     parser.add_argument("--max-k", type=int, default=2)
     args = parser.parse_args()
+
+    solver = MatchstickSolver(args.problem, args.max_k)
+    solver.solve()
