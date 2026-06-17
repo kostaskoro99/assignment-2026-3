@@ -90,9 +90,9 @@ class MatchstickSolver:
             return False            
 
     def _get_candidates(self, current, idx):
-        # Αν είναι ψηφίο, δοκιμάζουμε 0-9. Αν είναι τελεστής, '+' ή '-'
-        if current in ['+', '-']: return ['+', '-']
-        return [str(i) for i in range(10)]
+        # Αν είμαστε σε θέση ψηφίου (οχι στο '+', '-', '=')
+        if current in ['+', '-', '=']: return [current]
+        return [str(i) for i in range(10)] # Επιστρέφει όλα τα ψηφία 0-9
 
     def _add_to_results(self, state, moves, history):
 
