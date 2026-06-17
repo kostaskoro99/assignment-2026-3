@@ -85,6 +85,8 @@ class MatchstickSolver:
         return [str(i) for i in range(10)]
 
     def _add_to_results(self, state, moves, history):
+
+        print(f"DEBUG: Found valid solution: {''.join(state)} with {moves} moves")         
         picks = [m.split(',')[0].replace("Move(", "") for m in history]
         places = [m.split(',')[1].replace(")", "").strip() for m in history]
 
