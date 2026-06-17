@@ -33,7 +33,7 @@ class MatchstickSolver:
             return
 
   # Τερματισμός (Base Case)
-         if idx == len(self.tokens):
+        if idx == len(self.tokens):
             if moves <= self.max_k and self._is_valid(current_state):
                 self._add_to_results(current_state, moves, path_history)
             return
